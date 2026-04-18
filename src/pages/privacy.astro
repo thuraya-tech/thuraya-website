@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PrivacyPage from '../components/pages/PrivacyPage.astro';
+import { t } from '../i18n';
+const lang = 'ar' as const;
+const s = t(lang);
+---
+<BaseLayout lang={lang} title={s.privacy.title}>
+  <PrivacyPage lang={lang} />
+</BaseLayout>
