@@ -1,0 +1,73 @@
+---
+import type { Lang } from '../../i18n';
+import { t, localePath } from '../../i18n';
+import Pleiades from '../Pleiades.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = t(lang);
+const h = s.home;
+---
+<section class="relative overflow-hidden bg-navy text-white">
+  <div class="absolute inset-0 opacity-50 pointer-events-none">
+    <Pleiades class="absolute -top-10 end-0 w-[760px] max-w-none" />
+  </div>
+  <div class="container-page relative py-24 md:py-32">
+    <h1 class="h-display max-w-3xl">{h.heroTitle}</h1>
+    <p class="lead text-white/80 mt-6 max-w-2xl">{h.heroSubtitle}</p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a href={localePath(lang, '/products')} class="btn-primary">{h.heroCtaPrimary}</a>
+      <a href={localePath(lang, '/contact')} class="btn-ghost border-white/30 text-white hover:bg-white/10">{h.heroCtaSecondary}</a>
+    </div>
+  </div>
+</section>
+
+<section class="container-page py-20">
+  <h2 class="h-section text-navy">{h.productsTitle}</h2>
+  <p class="lead mt-3 max-w-2xl">{h.productsLead}</p>
+  <div class="grid md:grid-cols-2 gap-6 mt-10">
+    <article class="card">
+      <div class="text-sm font-bold text-gold tracking-wide uppercase">{h.qaydTitle}</div>
+      <p class="mt-3 text-charcoal/90">{h.qaydDesc}</p>
+      <a href="https://qayd.thuraya.tech" rel="noopener" class="inline-block mt-5 font-bold text-navy hover:text-gold">{h.qaydLink} →</a>
+    </article>
+    <article class="card">
+      <div class="text-sm font-bold text-gold tracking-wide uppercase">{h.traceTitle}</div>
+      <p class="mt-3 text-charcoal/90">{h.traceDesc}</p>
+      <a href="https://thurayatrace.cloud" rel="noopener" class="inline-block mt-5 font-bold text-navy hover:text-gold">{h.traceLink} →</a>
+    </article>
+  </div>
+</section>
+
+<section class="bg-white border-y border-navy/10">
+  <div class="container-page py-12">
+    <div class="text-center text-sm font-bold tracking-widest text-muted uppercase">{h.trustTitle}</div>
+    <ul class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm font-medium text-charcoal">
+      {h.trustItems.map((item) => (
+        <li class="border border-navy/10 rounded-lg py-4 px-3 bg-surface">{item}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="container-page py-20">
+  <h2 class="h-section text-navy">{h.pillarsTitle}</h2>
+  <div class="grid md:grid-cols-3 gap-6 mt-10">
+    {h.pillars.map((p) => (
+      <article class="card">
+        <h3 class="text-xl font-bold text-navy">{p.title}</h3>
+        <p class="mt-2 text-charcoal/80">{p.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="container-page pb-24">
+  <div class="rounded-2xl bg-navy text-white p-10 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div>
+      <h2 class="text-3xl font-bold">{h.ctaTitle}</h2>
+      <p class="mt-2 text-white/80">{h.ctaBody}</p>
+    </div>
+    <a href={localePath(lang, '/contact')} class="btn-primary whitespace-nowrap">{h.ctaButton}</a>
+  </div>
+</section>

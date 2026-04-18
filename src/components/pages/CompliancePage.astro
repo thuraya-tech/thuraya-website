@@ -1,0 +1,34 @@
+---
+import type { Lang } from '../../i18n';
+import { t } from '../../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = t(lang).compliance;
+---
+<section class="container-page py-20">
+  <h1 class="h-display text-navy">{c.title}</h1>
+  <p class="lead mt-5 max-w-3xl">{c.lead}</p>
+</section>
+
+<section class="container-page pb-12 grid md:grid-cols-2 gap-6">
+  {c.standards.map((std) => (
+    <article class="card">
+      <div class="text-sm font-bold tracking-widest text-gold">{std.code}</div>
+      <h2 class="mt-1 text-xl font-bold text-navy">{std.title}</h2>
+      <p class="mt-2 text-charcoal/85">{std.body}</p>
+    </article>
+  ))}
+</section>
+
+<section class="container-page py-16">
+  <h2 class="h-section text-navy">{c.archTitle}</h2>
+  <ul class="mt-8 grid md:grid-cols-2 gap-3">
+    {c.archItems.map((item) => (
+      <li class="card flex items-start gap-3">
+        <span class="mt-1 inline-block h-2 w-2 rounded-full bg-gold flex-shrink-0" aria-hidden="true"></span>
+        <span class="text-charcoal/90">{item}</span>
+      </li>
+    ))}
+  </ul>
+</section>

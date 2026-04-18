@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { Lang } from '../i18n';
+import { t, dirFor } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+}
+
+const { lang, title, description } = Astro.props;
+const s = t(lang);
+const dir = dirFor(lang);
+const fullTitle = title ? `${title} — ${s.meta.siteName}` : `${s.meta.siteName} — ${s.meta.tagline}`;
+const desc = description ?? s.meta.description;
+const pathname = Astro.url.pathname;
+---
+<!DOCTYPE html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={desc} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" hreflang="ar" href={`https://thuraya.tech${pathname.replace(/^\/en/, '') || '/'}`} />
+    <link rel="alternate" hreflang="en" href={`https://thuraya.tech/en${pathname.startsWith('/en') ? pathname.slice(3) : pathname}`.replace(/\/$/, '') || 'https://thuraya.tech/en'} />
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:start-2 focus:bg-gold focus:text-navy focus:px-3 focus:py-1 focus:rounded">Skip to content</a>
+    <Header lang={lang} pathname={pathname} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

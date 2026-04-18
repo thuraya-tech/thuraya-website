@@ -1,0 +1,36 @@
+---
+import type { Lang } from '../../i18n';
+import { t } from '../../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = t(lang).products;
+---
+<section class="container-page py-20">
+  <h1 class="h-display text-navy">{p.title}</h1>
+  <p class="lead mt-5 max-w-3xl">{p.lead}</p>
+</section>
+
+<section class="container-page pb-24">
+  <h2 class="h-section text-navy">{p.compareTitle}</h2>
+  <div class="mt-8 overflow-x-auto rounded-2xl border border-navy/10 bg-white">
+    <table class="w-full text-start">
+      <thead class="bg-navy text-white">
+        <tr>
+          <th class="text-start font-bold p-4">{p.headers.feature}</th>
+          <th class="text-start font-bold p-4">{p.headers.qayd}</th>
+          <th class="text-start font-bold p-4">{p.headers.trace}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {p.rows.map((row, i) => (
+          <tr class={i % 2 === 0 ? 'bg-surface' : 'bg-white'}>
+            <td class="p-4 font-semibold text-charcoal">{row.f}</td>
+            <td class="p-4 text-charcoal/85">{row.q}</td>
+            <td class="p-4 text-charcoal/85">{row.t}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+import type { Lang } from '../i18n';
+import { t, localePath } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const s = t(lang);
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-navy/10 bg-white mt-20">
+  <div class="container-page py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <img src="/logo.svg" alt={s.meta.siteName} class="h-8 w-auto" />
+      <div>
+        <div class="font-bold text-navy">{s.meta.siteName}</div>
+        <div class="text-sm text-muted">© {year} — {s.footer.rights}</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-6 text-sm">
+      <a href={localePath(lang, '/privacy')} class="text-muted hover:text-navy">{s.footer.privacy}</a>
+      <a href={localePath(lang, '/terms')} class="text-muted hover:text-navy">{s.footer.terms}</a>
+    </div>
+    <div class="flex items-center gap-2 text-sm font-medium text-charcoal">
+      <span aria-hidden="true">🇸🇦</span>
+      <span>{s.footer.madeIn}</span>
+    </div>
+  </div>
+</footer>

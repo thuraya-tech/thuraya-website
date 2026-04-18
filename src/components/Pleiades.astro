@@ -1,0 +1,42 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+<svg
+  viewBox="0 0 600 400"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class={className}
+>
+  <defs>
+    <radialGradient id="star-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4A843" stop-opacity="0.95" />
+      <stop offset="60%" stop-color="#D4A843" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#D4A843" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <g>
+    <circle cx="120" cy="110" r="34" fill="url(#star-glow)" />
+    <circle cx="120" cy="110" r="3" fill="#F8F9FC" />
+
+    <circle cx="220" cy="80" r="28" fill="url(#star-glow)" />
+    <circle cx="220" cy="80" r="2.5" fill="#F8F9FC" />
+
+    <circle cx="320" cy="140" r="44" fill="url(#star-glow)" />
+    <circle cx="320" cy="140" r="4" fill="#F8F9FC" />
+
+    <circle cx="420" cy="100" r="30" fill="url(#star-glow)" />
+    <circle cx="420" cy="100" r="3" fill="#F8F9FC" />
+
+    <circle cx="500" cy="180" r="26" fill="url(#star-glow)" />
+    <circle cx="500" cy="180" r="2.5" fill="#F8F9FC" />
+
+    <circle cx="260" cy="240" r="32" fill="url(#star-glow)" />
+    <circle cx="260" cy="240" r="3" fill="#F8F9FC" />
+
+    <circle cx="380" cy="280" r="28" fill="url(#star-glow)" />
+    <circle cx="380" cy="280" r="2.5" fill="#F8F9FC" />
+  </g>
+</svg>
