@@ -1,0 +1,18 @@
+---
+import type { Lang } from '../i18n';
+import { t } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const h = t(lang).home;
+---
+<section class="bg-white border-y border-navy/10">
+  <div class="container-page py-12">
+    <div class="text-center text-sm font-bold tracking-widest text-muted uppercase">{h.trustTitle}</div>
+    <ul class="mt-6 grid grid-cols-2 md:grid-cols-5 gap-4 text-center text-sm font-medium text-charcoal">
+      {h.trustItems.map((item) => (
+        <li class="border border-navy/10 rounded-lg py-4 px-3 bg-surface">{item}</li>
+      ))}
+    </ul>
+  </div>
+</section>

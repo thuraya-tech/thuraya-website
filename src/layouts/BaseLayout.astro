@@ -17,6 +17,9 @@ const dir = dirFor(lang);
 const fullTitle = title ? `${title} — ${s.meta.siteName}` : `${s.meta.siteName} — ${s.meta.tagline}`;
 const desc = description ?? s.meta.description;
 const pathname = Astro.url.pathname;
+const arHref = `https://thuraya.tech${pathname.replace(/^\/en/, '') || '/'}`;
+const enPath = pathname.startsWith('/en') ? pathname.slice(3) : pathname;
+const enHref = (`https://thuraya.tech/en${enPath}`).replace(/\/$/, '') || 'https://thuraya.tech/en';
 ---
 <!DOCTYPE html>
 <html lang={lang} dir={dir}>
@@ -24,9 +27,15 @@ const pathname = Astro.url.pathname;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={desc} />
+    <meta name="theme-color" content="#0A1628" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" hreflang="ar" href={`https://thuraya.tech${pathname.replace(/^\/en/, '') || '/'}`} />
-    <link rel="alternate" hreflang="en" href={`https://thuraya.tech/en${pathname.startsWith('/en') ? pathname.slice(3) : pathname}`.replace(/\/$/, '') || 'https://thuraya.tech/en'} />
+    <link rel="alternate" hreflang="ar-SA" href={arHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={arHref} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={lang === 'ar' ? 'ar_SA' : 'en_US'} />
     <title>{fullTitle}</title>
   </head>
   <body>

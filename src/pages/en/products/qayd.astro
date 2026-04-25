@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import QaydPage from '../../../components/pages/QaydPage.astro';
+import { t } from '../../../i18n';
+const lang = 'en' as const;
+const s = t(lang);
+---
+<BaseLayout lang={lang} title={s.home.qaydTitle}>
+  <QaydPage lang={lang} />
+</BaseLayout>

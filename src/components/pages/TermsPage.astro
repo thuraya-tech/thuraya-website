@@ -6,7 +6,20 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = t(lang).terms;
 ---
+<!-- TODO copy review: Ali + legal counsel to confirm before publishing. -->
 <section class="container-page py-20">
   <h1 class="h-display text-navy">{p.title}</h1>
-  <p class="lead mt-5 max-w-3xl">{p.body}</p>
+  <p class="lead mt-5 max-w-3xl">{p.intro}</p>
+  <p class="mt-3 text-sm text-muted">{p.lastUpdated}</p>
+</section>
+
+<section class="container-page pb-24">
+  <div class="card max-w-3xl space-y-8">
+    {p.sections.map((sec) => (
+      <div>
+        <h2 class="text-xl font-bold text-navy">{sec.heading}</h2>
+        <p class="mt-2 text-charcoal/85 leading-relaxed">{sec.body}</p>
+      </div>
+    ))}
+  </div>
 </section>

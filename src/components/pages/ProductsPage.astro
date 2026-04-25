@@ -1,6 +1,6 @@
 ---
 import type { Lang } from '../../i18n';
-import { t } from '../../i18n';
+import { t, localePath } from '../../i18n';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -11,15 +11,19 @@ const p = t(lang).products;
   <p class="lead mt-5 max-w-3xl">{p.lead}</p>
 </section>
 
-<section class="container-page pb-24">
+<section class="container-page pb-12">
   <h2 class="h-section text-navy">{p.compareTitle}</h2>
   <div class="mt-8 overflow-x-auto rounded-2xl border border-navy/10 bg-white">
     <table class="w-full text-start">
       <thead class="bg-navy text-white">
         <tr>
           <th class="text-start font-bold p-4">{p.headers.feature}</th>
-          <th class="text-start font-bold p-4">{p.headers.qayd}</th>
-          <th class="text-start font-bold p-4">{p.headers.trace}</th>
+          <th class="text-start font-bold p-4">
+            <a href={localePath(lang, '/products/qayd')} class="hover:text-gold">{p.headers.qayd}</a>
+          </th>
+          <th class="text-start font-bold p-4">
+            <a href={localePath(lang, '/products/trace')} class="hover:text-gold">{p.headers.trace}</a>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -32,5 +36,16 @@ const p = t(lang).products;
         ))}
       </tbody>
     </table>
+  </div>
+</section>
+
+<section class="container-page pb-24">
+  <div class="rounded-2xl bg-navy text-white p-10 md:p-14">
+    <h2 class="text-3xl font-bold">{p.betterTogetherTitle}</h2>
+    <p class="mt-3 text-white/80 max-w-3xl">{p.betterTogetherBody}</p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href={localePath(lang, '/products/qayd')} class="btn-primary">{t(lang).home.qaydTitle}</a>
+      <a href={localePath(lang, '/products/trace')} class="btn-primary">{t(lang).home.traceTitle}</a>
+    </div>
   </div>
 </section>

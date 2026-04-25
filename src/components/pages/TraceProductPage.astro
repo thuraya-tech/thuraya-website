@@ -1,0 +1,40 @@
+---
+import type { Lang } from '../../i18n';
+import { t } from '../../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = t(lang);
+const p = s.tracePage;
+---
+<section class="relative overflow-hidden bg-navy text-white">
+  <div class="container-page py-20 md:py-28">
+    <div class="text-sm font-bold tracking-widest text-gold uppercase">{s.home.traceTitle}</div>
+    <h1 class="h-display mt-3 max-w-3xl">{p.tagline}</h1>
+    <p class="lead text-white/80 mt-6 max-w-2xl">{p.intro}</p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href={p.ctaUrl} rel="noopener" class="btn-primary">{p.cta}</a>
+    </div>
+  </div>
+</section>
+
+<section class="container-page py-20">
+  <h2 class="h-section text-navy">{p.featuresTitle}</h2>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+    {p.features.map((f) => (
+      <article class="card">
+        <h3 class="text-lg font-bold text-navy">{f.title}</h3>
+        <p class="mt-2 text-sm text-charcoal/80">{f.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<!-- TODO design: swap placeholder for a Trace platform screenshot once available. -->
+<section class="container-page pb-20">
+  <div class="rounded-2xl border border-navy/10 bg-white shadow-sm overflow-hidden">
+    <div class="aspect-[16/9] bg-gradient-to-br from-navy to-charcoal flex items-center justify-center">
+      <div class="text-white/60 font-mono text-sm">{p.mockupCaption}</div>
+    </div>
+  </div>
+</section>

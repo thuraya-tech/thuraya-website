@@ -13,7 +13,7 @@ const year = new Date().getFullYear();
 <footer class="border-t border-navy/10 bg-white mt-20">
   <div class="container-page py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
     <div class="flex items-center gap-3">
-      <img src="/logo.svg" alt={s.meta.siteName} class="h-8 w-auto" />
+      <img src="/logo.svg" alt={s.meta.siteName} class="h-8 w-auto" width="32" height="32" />
       <div>
         <div class="font-bold text-navy">{s.meta.siteName}</div>
         <div class="text-sm text-muted">© {year} — {s.footer.rights}</div>
@@ -22,6 +22,7 @@ const year = new Date().getFullYear();
     <div class="flex items-center gap-6 text-sm">
       <a href={localePath(lang, '/privacy')} class="text-muted hover:text-navy">{s.footer.privacy}</a>
       <a href={localePath(lang, '/terms')} class="text-muted hover:text-navy">{s.footer.terms}</a>
+      <a href="mailto:hello@thuraya.tech" class="text-muted hover:text-navy">hello@thuraya.tech</a>
     </div>
     <div class="flex items-center gap-2 text-sm font-medium text-charcoal">
       <span aria-hidden="true">🇸🇦</span>
