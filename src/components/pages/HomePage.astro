@@ -2,6 +2,8 @@
 import type { Lang } from '../../i18n';
 import { t, localePath } from '../../i18n';
 import Pleiades from '../Pleiades.astro';
+import ProductCard from '../ProductCard.astro';
+import TrustBar from '../TrustBar.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -26,29 +28,22 @@ const h = s.home;
   <h2 class="h-section text-navy">{h.productsTitle}</h2>
   <p class="lead mt-3 max-w-2xl">{h.productsLead}</p>
   <div class="grid md:grid-cols-2 gap-6 mt-10">
-    <article class="card">
-      <div class="text-sm font-bold text-gold tracking-wide uppercase">{h.qaydTitle}</div>
-      <p class="mt-3 text-charcoal/90">{h.qaydDesc}</p>
-      <a href="https://qayd.thuraya.tech" rel="noopener" class="inline-block mt-5 font-bold text-navy hover:text-gold">{h.qaydLink} →</a>
-    </article>
-    <article class="card">
-      <div class="text-sm font-bold text-gold tracking-wide uppercase">{h.traceTitle}</div>
-      <p class="mt-3 text-charcoal/90">{h.traceDesc}</p>
-      <a href="https://thurayatrace.cloud" rel="noopener" class="inline-block mt-5 font-bold text-navy hover:text-gold">{h.traceLink} →</a>
-    </article>
+    <ProductCard
+      title={h.qaydTitle}
+      description={h.qaydDesc}
+      href={localePath(lang, '/products/qayd')}
+      cta={h.qaydLink}
+    />
+    <ProductCard
+      title={h.traceTitle}
+      description={h.traceDesc}
+      href={localePath(lang, '/products/trace')}
+      cta={h.traceLink}
+    />
   </div>
 </section>
 
-<section class="bg-white border-y border-navy/10">
-  <div class="container-page py-12">
-    <div class="text-center text-sm font-bold tracking-widest text-muted uppercase">{h.trustTitle}</div>
-    <ul class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm font-medium text-charcoal">
-      {h.trustItems.map((item) => (
-        <li class="border border-navy/10 rounded-lg py-4 px-3 bg-surface">{item}</li>
-      ))}
-    </ul>
-  </div>
-</section>
+<TrustBar lang={lang} />
 
 <section class="container-page py-20">
   <h2 class="h-section text-navy">{h.pillarsTitle}</h2>
@@ -62,7 +57,21 @@ const h = s.home;
   </div>
 </section>
 
-<section class="container-page pb-24">
+<section class="bg-navy text-white">
+  <div class="container-page py-16">
+    <h2 class="h-section text-center">{h.numbersTitle}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 text-center">
+      {h.numbers.map((n) => (
+        <div>
+          <div class="text-4xl md:text-5xl font-bold text-gold">{n.value}</div>
+          <div class="mt-2 text-sm text-white/70">{n.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="container-page py-20">
   <div class="rounded-2xl bg-navy text-white p-10 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
     <div>
       <h2 class="text-3xl font-bold">{h.ctaTitle}</h2>

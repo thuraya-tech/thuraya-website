@@ -64,3 +64,19 @@ a {
     @apply rounded-2xl border border-navy/10 bg-white p-6 shadow-sm;
   }
 }
+
+/* Lightweight animated star drift for the Pleiades hero background.
+   Pure CSS, no JS, respects prefers-reduced-motion. */
+@keyframes thuraya-drift {
+  0%   { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(-12px, 6px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.thuraya-drift {
+  animation: thuraya-drift 22s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thuraya-drift { animation: none; }
+}

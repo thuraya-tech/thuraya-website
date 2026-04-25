@@ -37,7 +37,7 @@ The `dist/` folder is fully static. `sitemap-index.xml` and `robots.txt` are gen
 
 ```
 src/
-  components/        shared UI (Header, Footer, Pleiades)
+  components/        shared UI (Header, Footer, Pleiades, TrustBar)
   components/pages/  page-body partials reused across AR + EN routes
   i18n/              ar.ts, en.ts, helpers
   layouts/           BaseLayout.astro

@@ -37,16 +37,24 @@ export const en: Strings = {
     traceLink: 'Learn more',
     trustTitle: 'Trusted & Compliant',
     trustItems: [
-      'NDMO — National Data Management Office',
-      'PDPL — Personal Data Protection Law',
-      'OCI Jeddah — In-Kingdom hosting',
-      'Vision 2030 — Digital transformation',
+      'NDMO Compliant',
+      'PDPL Ready',
+      'In-Kingdom Hosting · OCI Jeddah',
+      'Vision 2030 Aligned',
+      '🇸🇦 Made in Saudi Arabia',
     ],
     pillarsTitle: 'Why Thuraya',
     pillars: [
       { title: 'Arabic-First', body: 'Interfaces and experiences designed in Arabic from day one — never just translated.' },
       { title: 'In-Kingdom', body: 'Data, hosting, and support — everything stays within the borders of Saudi Arabia.' },
       { title: 'Hybrid-Ready', body: 'Deploy to public cloud, private cloud, or on-premise with the same operational model.' },
+    ],
+    numbersTitle: 'By the numbers',
+    numbers: [
+      { value: '100%', label: 'In-Kingdom hosted' },
+      { value: '24/7', label: 'Arabic-language support' },
+      { value: '<1 day', label: 'Response time' },
+      { value: '2030', label: 'Vision-aligned' },
     ],
     ctaTitle: 'Ready to get started?',
     ctaBody: 'Talk to our team about your infrastructure and observability needs.',
@@ -68,10 +76,14 @@ export const en: Strings = {
       { title: 'Transparency', body: 'Open source where we can. Clear documentation always.' },
       { title: 'Partnership', body: 'We grow with our customers, not at their expense.' },
     ],
+    teamTitle: 'Our Team',
+    teamBody: 'A small, dedicated Saudi team of engineers combining deep cloud-platform experience with intimate knowledge of the local market.',
+    presenceTitle: 'Saudi Presence',
+    presenceBody: 'Headquartered in Riyadh, with all production data hosted in Oracle Cloud Infrastructure, Jeddah region.',
   },
   products: {
     title: 'Our Products',
-    lead: 'Two complementary platforms covering the full infrastructure lifecycle.',
+    lead: 'Two complementary platforms covering the full infrastructure lifecycle — better together.',
     compareTitle: 'Quick Comparison',
     headers: { feature: 'Feature', qayd: 'Qayd', trace: 'Trace' },
     rows: [
@@ -82,6 +94,38 @@ export const en: Strings = {
       { f: 'Deployment', q: 'Cloud / on-prem / hybrid', t: 'Cloud / on-prem / hybrid' },
       { f: 'Compliance', q: 'NDMO / PDPL', t: 'NDMO / PDPL / NCA ECC' },
     ],
+    betterTogetherTitle: 'Better Together',
+    betterTogetherBody: 'Qayd provisions and manages your infrastructure; Trace observes its health and performance. Used together, you get end-to-end visibility from infrastructure to application — without external integrations.',
+  },
+  qaydPage: {
+    tagline: 'Manage your infrastructure in one language — Arabic, native, local.',
+    intro: 'Qayd is a unified platform for managing cloud resources across multiple providers, designed for DevOps teams in the Kingdom and the region.',
+    featuresTitle: 'Key Features',
+    features: [
+      { title: 'Unified Management', body: 'A single pane for resources across AWS, OCI, Azure, and on-prem.' },
+      { title: 'Infrastructure-as-Code', body: 'Native Terraform / OpenTofu workflow with templates tuned for the Saudi market.' },
+      { title: 'Governance & Policy', body: 'Enforce compliance policies (NDMO, PDPL) before deployment.' },
+      { title: 'Cost Control', body: 'Track and allocate spend by team, project, and environment.' },
+      { title: 'Arabic-First', body: 'UI, alerts, and documentation available in native Arabic.' },
+    ],
+    mockupCaption: 'Qayd main dashboard',
+    cta: 'Discover Qayd',
+    ctaUrl: 'https://qayd.thuraya.tech',
+  },
+  tracePage: {
+    tagline: 'Saudi-ready distributed observability, built on OpenTelemetry.',
+    intro: 'Trace is an integrated observability platform — logs, metrics, and traces — in one place, hosted inside the Kingdom.',
+    featuresTitle: 'Key Features',
+    features: [
+      { title: 'OpenTelemetry-native', body: 'OTLP ingestion with no vendor lock-in — no proprietary agents.' },
+      { title: 'Three Pillars Unified', body: 'Logs, metrics, and traces in one platform instead of three.' },
+      { title: 'In-Kingdom Hosting', body: 'Data lives in OCI Jeddah — never crosses borders.' },
+      { title: 'Multi-Tenant', body: 'Full per-customer isolation at the storage and query layer.' },
+      { title: 'Smart Alerting', body: 'Customizable alerts via email, Slack, Teams, and Webhooks.' },
+    ],
+    mockupCaption: 'Trace performance dashboard',
+    cta: 'Discover Trace',
+    ctaUrl: 'https://thurayatrace.cloud',
   },
   compliance: {
     title: 'Compliance & Security',
@@ -105,6 +149,10 @@ export const en: Strings = {
   contact: {
     title: 'Contact us',
     lead: 'Tell us about your project and we will reply within one business day.',
+    addressTitle: 'Our office',
+    addressBody: 'Riyadh, Kingdom of Saudi Arabia',
+    emailLabel: 'Email',
+    sla: 'We typically reply within one business day.',
     form: {
       name: 'Full name',
       email: 'Email',
@@ -119,10 +167,84 @@ export const en: Strings = {
   },
   privacy: {
     title: 'Privacy Policy',
-    body: 'This policy is drafted in alignment with the Saudi Personal Data Protection Law (PDPL). Full text will be published soon.',
+    intro: 'Thuraya Tech is committed to protecting your personal data in line with the Saudi Personal Data Protection Law (PDPL).',
+    sections: [
+      {
+        heading: '1. Data we collect',
+        body: 'We collect data you voluntarily provide via contact forms (name, email, company, role, message), plus basic analytical data about site usage (browser type, pages visited, country-level location).',
+      },
+      {
+        heading: '2. Data classification',
+        body: 'We classify data per the NDMO framework: Public, Internal, Restricted, and Confidential. Contact data you share with us is treated as "Internal" at minimum.',
+      },
+      {
+        heading: '3. Lawful basis for processing',
+        body: 'We process your data based on your explicit consent when submitting a form, or on a legitimate interest in responding to your business inquiries.',
+      },
+      {
+        heading: '4. Retention',
+        body: 'We retain contact data for 24 months from the last interaction, unless you request earlier deletion.',
+      },
+      {
+        heading: '5. Your rights under PDPL (Article 20)',
+        body: 'You have the right to: (a) access your data, (b) correct or update it, (c) request its deletion, (d) restrict processing, (e) object to processing, (f) withdraw consent at any time. To exercise any of these rights, write to privacy@thuraya.tech.',
+      },
+      {
+        heading: '6. Data sharing',
+        body: 'We do not sell your data. We share it only with vetted service providers (e.g. OCI Jeddah for hosting) under strict data-processing agreements. All data remains within the borders of the Kingdom.',
+      },
+      {
+        heading: '7. Cookies',
+        body: 'We use only essential cookies required to operate the site. We do not use marketing tracking cookies. We will request your explicit consent before enabling any additional analytics cookies.',
+      },
+      {
+        heading: '8. Data Protection Officer (DPO)',
+        body: 'For any inquiry about how we process your data, contact our DPO at dpo@thuraya.tech. We commit to responding within 30 days as required by PDPL.',
+      },
+      {
+        heading: '9. Updates',
+        body: 'We may update this policy from time to time. The last updated date appears at the top of this page; we will notify registered users of material changes.',
+      },
+    ],
+    lastUpdated: 'Last updated: 25 April 2026',
   },
   terms: {
     title: 'Terms of Service',
-    body: 'Terms governing the use of Thuraya Tech website and products. Full text will be published soon.',
+    intro: 'By using the Thuraya Tech website (thuraya.tech) and our products, you agree to the following terms.',
+    sections: [
+      {
+        heading: '1. Definitions',
+        body: '"Thuraya Tech", "we", or "us" refers to Thuraya Tech, a Saudi company. "User" or "you" refers to anyone accessing the site or our services. "Services" includes the Qayd and Trace products and any future product.',
+      },
+      {
+        heading: '2. Acceptable use',
+        body: 'You may use the site only for lawful purposes. Prohibited: unauthorised access attempts, service disruption, impersonation, or publishing harmful content or content contrary to Saudi regulations.',
+      },
+      {
+        heading: '3. Intellectual property',
+        body: 'All site content (text, images, logos, designs, code) is owned by or licensed to Thuraya Tech. You may not copy or redistribute it without prior written permission.',
+      },
+      {
+        heading: '4. Accounts and subscriptions',
+        body: 'Some services require an account. You are responsible for keeping your credentials confidential and for all activity under your account.',
+      },
+      {
+        heading: '5. Limitation of liability',
+        body: 'Services are provided "as is". We do not warrant that they will be uninterrupted or error-free. Our maximum liability is limited to the amounts actually paid for the disputed service in the prior 12 months.',
+      },
+      {
+        heading: '6. Termination',
+        body: 'We may suspend or terminate your access if you breach these terms. You may stop using the services at any time.',
+      },
+      {
+        heading: '7. Governing law',
+        body: 'These terms are governed by the laws of the Kingdom of Saudi Arabia. Any dispute will be resolved before the competent courts in Riyadh.',
+      },
+      {
+        heading: '8. Contact',
+        body: 'For any inquiry: legal@thuraya.tech.',
+      },
+    ],
+    lastUpdated: 'Last updated: 25 April 2026',
   },
 };

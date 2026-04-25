@@ -1,50 +1,34 @@
 ---
 import type { Lang } from '../../i18n';
 import { t } from '../../i18n';
+import ContactForm from '../ContactForm.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const c = t(lang).contact;
-const f = c.form;
 ---
 <section class="container-page py-20">
   <h1 class="h-display text-navy">{c.title}</h1>
   <p class="lead mt-5 max-w-3xl">{c.lead}</p>
 </section>
 
-<section class="container-page pb-24">
-  <form class="card max-w-2xl space-y-5" onsubmit="event.preventDefault(); alert('stub');">
-    <div>
-      <label for="name" class="block text-sm font-bold text-charcoal mb-1">{f.name}</label>
-      <input id="name" name="name" type="text" required class="w-full rounded-md border border-navy/20 bg-white px-3 py-2 focus:border-gold focus:outline-none" />
+<section class="container-page pb-24 grid md:grid-cols-3 gap-8">
+  <div class="md:col-span-2">
+    <ContactForm lang={lang} />
+  </div>
+  <aside class="space-y-5">
+    <div class="card">
+      <h2 class="text-lg font-bold text-navy">{c.addressTitle}</h2>
+      <p class="mt-2 text-charcoal/85">{c.addressBody}</p>
     </div>
-    <div class="grid md:grid-cols-2 gap-5">
-      <div>
-        <label for="email" class="block text-sm font-bold text-charcoal mb-1">{f.email}</label>
-        <input id="email" name="email" type="email" required class="w-full rounded-md border border-navy/20 bg-white px-3 py-2 focus:border-gold focus:outline-none" />
-      </div>
-      <div>
-        <label for="company" class="block text-sm font-bold text-charcoal mb-1">{f.company}</label>
-        <input id="company" name="company" type="text" class="w-full rounded-md border border-navy/20 bg-white px-3 py-2 focus:border-gold focus:outline-none" />
-      </div>
+    <div class="card">
+      <h2 class="text-lg font-bold text-navy">{c.emailLabel}</h2>
+      <p class="mt-2">
+        <a href="mailto:hello@thuraya.tech" class="text-navy font-medium hover:text-gold">hello@thuraya.tech</a>
+      </p>
     </div>
-    <div class="grid md:grid-cols-2 gap-5">
-      <div>
-        <label for="role" class="block text-sm font-bold text-charcoal mb-1">{f.role}</label>
-        <input id="role" name="role" type="text" class="w-full rounded-md border border-navy/20 bg-white px-3 py-2 focus:border-gold focus:outline-none" />
-      </div>
-      <div>
-        <label for="product" class="block text-sm font-bold text-charcoal mb-1">{f.product}</label>
-        <select id="product" name="product" class="w-full rounded-md border border-navy/20 bg-white px-3 py-2 focus:border-gold focus:outline-none">
-          {f.productOptions.map((opt) => <option value={opt}>{opt}</option>)}
-        </select>
-      </div>
+    <div class="card bg-navy text-white border-navy">
+      <p class="text-sm text-white/85">{c.sla}</p>
     </div>
-    <div>
-      <label for="message" class="block text-sm font-bold text-charcoal mb-1">{f.message}</label>
-      <textarea id="message" name="message" rows="5" required class="w-full rounded-md border border-navy/20 bg-white px-3 py-2 focus:border-gold focus:outline-none"></textarea>
-    </div>
-    <button type="submit" class="btn-primary">{f.submit}</button>
-    <p class="text-xs text-muted">{f.note}</p>
-  </form>
+  </aside>
 </section>
