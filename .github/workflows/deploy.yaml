@@ -23,7 +23,7 @@ jobs:
           node-version: 22
           cache: npm
 
-      - run: npm ci
+      - run: npm install --include=optional --no-audit --prefer-offline
 
       - run: npm run build
 
