@@ -27,7 +27,7 @@ const h = s.home;
 <section class="container-page py-20">
   <h2 class="h-section text-navy">{h.productsTitle}</h2>
   <p class="lead mt-3 max-w-2xl">{h.productsLead}</p>
-  <div class="grid md:grid-cols-2 gap-6 mt-10">
+  <div class="grid md:grid-cols-3 gap-6 mt-10">
     <ProductCard
       title={h.qaydTitle}
       description={h.qaydDesc}
@@ -39,6 +39,12 @@ const h = s.home;
       description={h.traceDesc}
       href={localePath(lang, '/products/trace')}
       cta={h.traceLink}
+    />
+    <ProductCard
+      title={h.aqlTitle}
+      description={h.aqlDesc}
+      href={localePath(lang, '/products/aql')}
+      cta={h.aqlLink}
     />
   </div>
 </section>
