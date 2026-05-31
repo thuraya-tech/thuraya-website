@@ -1,82 +1,212 @@
-@import '@fontsource/plus-jakarta-sans/400.css';
-@import '@fontsource/plus-jakarta-sans/700.css';
-@import '@fontsource/tajawal/400.css';
-@import '@fontsource/tajawal/700.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   THURAYA · IT CLUSTER · v3 (2026-05-31)
+   Umbrella site — thuraya.tech
+   ───────────────────────────────────────────────────────────────────────── */
+
 :root {
-  color-scheme: light;
+    --bone:           #F7F4ED;
+    --bone-warm:      #EFEAE0;
+    --paper:          #FFFEFB;
+    --ink:            #0A1124;
+    --ink-soft:       #1B2440;
+    --steel:          #4C5468;
+    --steel-soft:     #97A0B5;
+    --brass:          #B8862E;
+    --brass-hot:      #D4A85B;
+    --brass-deep:     #8A6321;
+    --signal:         #1F4FCC;
+    --rule:           rgba(10, 17, 36, 0.10);
+    --rule-soft:      rgba(10, 17, 36, 0.05);
+    --rule-strong:    rgba(10, 17, 36, 0.78);
 }
 
-html {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  background: #F8F9FC;
-  color: #1A1A2E;
+@layer base {
+    html {
+        color-scheme: light;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        background-color: var(--bone);
+        color: var(--ink);
+        font-family: 'Manrope', 'Helvetica Neue', system-ui, sans-serif;
+        font-size: 15.5px;
+        line-height: 1.6;
+        font-feature-settings: "kern", "calt", "ss01";
+        position: relative;
+    }
+
+    /* Paper grain — fixed, warm, ~5% */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04  0 0 0 0 0.06  0 0 0 0 0.14  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+        background-size: 220px 220px;
+        opacity: 0.55;
+        mix-blend-mode: multiply;
+    }
+
+    body > * { position: relative; z-index: 1; }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Bricolage Grotesque', 'Manrope', sans-serif;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.022em;
+        line-height: 1.05;
+    }
+    h1 { font-variation-settings: "opsz" 96, "wdth" 90; }
+    h2 { font-variation-settings: "opsz" 72, "wdth" 92; }
+    h3 { font-variation-settings: "opsz" 48, "wdth" 92; }
+    h4 { font-variation-settings: "opsz" 24, "wdth" 95; }
+
+    html[lang='ar'] body {
+        font-family: 'Tajawal', 'Manrope', system-ui, sans-serif;
+    }
+
+    code, pre, .font-mono {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-feature-settings: "calt", "ss01";
+    }
+
+    ::selection { background: rgba(184, 134, 46, 0.22); color: var(--ink); }
+
+    a { color: var(--ink); text-decoration: none; }
+    a:hover { color: var(--brass-deep); }
 }
 
-html[lang='ar'] {
-  font-family: 'Tajawal', system-ui, sans-serif;
+@layer utilities {
+    .bg-bone  { background-color: var(--bone); }
+    .bg-paper { background-color: var(--paper); }
+    .bg-ink   { background-color: var(--ink); color: var(--bone); }
+
+    .surface {
+        background-color: var(--paper);
+        border: 1px solid var(--rule);
+        box-shadow: 0 1px 0 rgba(10, 17, 36, 0.05),
+                    0 12px 36px -22px rgba(10, 17, 36, 0.22);
+    }
+
+    .rule        { height: 1px; background-color: var(--rule); }
+    .rule-strong { height: 1px; background-color: var(--ink); opacity: 0.78; }
+    .rule-soft   { height: 1px; background-color: var(--rule-soft); }
+
+    .eyebrow {
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.26em;
+        font-size: 0.72rem;
+        color: var(--brass);
+        line-height: 1;
+        font-weight: 500;
+    }
+    .eyebrow .dot {
+        display: inline-block; width: 5px; height: 5px;
+        border-radius: 50%; background: var(--brass);
+        vertical-align: 2px; margin-right: 0.5em;
+    }
+
+    .btn-ink {
+        display: inline-flex; align-items: center; gap: 0.6em;
+        padding: 0.78em 1.5em;
+        background-color: var(--ink);
+        color: var(--bone);
+        border: 1px solid var(--ink);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        border-radius: 2px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+        box-shadow: inset 0 -2px 0 var(--brass), 0 1px 0 rgba(10, 17, 36, 0.06);
+    }
+    .btn-ink:hover {
+        background-color: var(--ink-soft);
+        color: var(--brass-hot);
+        transform: translateY(-1px);
+    }
+
+    .btn-quill {
+        display: inline-flex; align-items: center; gap: 0.6em;
+        padding: 0.76em 1.4em;
+        background-color: transparent;
+        color: var(--ink);
+        border: 1px solid var(--rule);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        border-radius: 2px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: border-color 180ms ease, color 180ms ease;
+    }
+    .btn-quill:hover { border-color: var(--brass); color: var(--brass-deep); }
+
+    .section-ink {
+        background-color: var(--ink);
+        color: var(--bone);
+        position: relative;
+        overflow: hidden;
+    }
+    .section-ink::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(to right, rgba(247,244,237,0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(247,244,237,0.04) 1px, transparent 1px);
+        background-size: 28px 28px;
+        pointer-events: none;
+    }
+    .section-ink > * { position: relative; z-index: 1; }
+
+    @keyframes tw {
+        0%, 100% { opacity: 0.55; }
+        50%      { opacity: 1; }
+    }
+    .twinkle { animation: tw 5.6s ease-in-out infinite; transform-origin: center; }
+
+    @keyframes fade-up {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal     { animation: fade-up 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .reveal-d1  { animation-delay: 0.10s; }
+    .reveal-d2  { animation-delay: 0.22s; }
+    .reveal-d3  { animation-delay: 0.34s; }
+    .reveal-d4  { animation-delay: 0.46s; }
+    .reveal-d5  { animation-delay: 0.58s; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .twinkle, .reveal { animation: none; opacity: 1; transform: none; }
+    }
+
+    .italic-brass {
+        color: var(--brass-deep);
+        font-style: italic;
+        font-variation-settings: "opsz" 96, "wdth" 86;
+    }
+
+    .container-page {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 1200px;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
 }
 
-body {
-  min-height: 100vh;
-  background: #F8F9FC;
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: inherit;
-}
-
-@layer components {
-  .container-page {
-    @apply mx-auto w-full max-w-content px-6 lg:px-8;
-  }
-
-  .btn {
-    @apply inline-flex items-center justify-center rounded-md px-5 py-3 text-sm font-bold transition;
-  }
-
-  .btn-primary {
-    @apply btn bg-gold text-navy hover:bg-gold/90;
-  }
-
-  .btn-ghost {
-    @apply btn border border-navy/20 bg-transparent text-navy hover:bg-navy/5;
-  }
-
-  .h-display {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
-  }
-
-  .h-section {
-    @apply text-3xl md:text-4xl font-bold leading-tight;
-  }
-
-  .lead {
-    @apply text-lg md:text-xl text-muted leading-relaxed;
-  }
-
-  .card {
-    @apply rounded-2xl border border-navy/10 bg-white p-6 shadow-sm;
-  }
-}
-
-/* Lightweight animated star drift for the Pleiades hero background.
-   Pure CSS, no JS, respects prefers-reduced-motion. */
-@keyframes thuraya-drift {
-  0%   { transform: translate3d(0, 0, 0); }
-  50%  { transform: translate3d(-12px, 6px, 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-
-.thuraya-drift {
-  animation: thuraya-drift 22s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .thuraya-drift { animation: none; }
-}
+.mark-master svg { display: block; height: 100%; width: auto; }
