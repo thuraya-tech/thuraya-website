@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import type { Lang } from '../i18n';
 import { t, dirFor } from '../i18n';
 
@@ -18,32 +16,199 @@ const fullTitle = title ? `${title} — ${s.meta.siteName}` : `${s.meta.siteName
 const desc = description ?? s.meta.description;
 const pathname = Astro.url.pathname;
 const arHref = `https://thuraya.tech${pathname.replace(/^\/en/, '') || '/'}`;
-const enPath = pathname.startsWith('/en') ? pathname.slice(3) : pathname;
-const enHref = (`https://thuraya.tech/en${enPath}`).replace(/\/$/, '') || 'https://thuraya.tech/en';
+const enPath  = pathname.startsWith('/en') ? pathname.slice(3) : pathname;
+const enHref  = (`https://thuraya.tech/en${enPath}`).replace(/\/$/, '') || 'https://thuraya.tech/en';
+const isAr    = lang === 'ar';
+const prefix  = isAr ? '' : '/en';
+const altLang = isAr ? 'en' : 'ar';
+const altPath = isAr ? enHref : arHref;
+const year    = new Date().getFullYear();
 ---
 <!DOCTYPE html>
-<html lang={lang} dir={dir}>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={desc} />
-    <meta name="theme-color" content="#0A1628" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" hreflang="ar-SA" href={arHref} />
-    <link rel="alternate" hreflang="en" href={enHref} />
-    <link rel="alternate" hreflang="x-default" href={arHref} />
-    <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={desc} />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content={lang === 'ar' ? 'ar_SA' : 'en_US'} />
-    <title>{fullTitle}</title>
-  </head>
-  <body>
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:start-2 focus:bg-gold focus:text-navy focus:px-3 focus:py-1 focus:rounded">Skip to content</a>
-    <Header lang={lang} pathname={pathname} />
-    <main id="main">
-      <slot />
-    </main>
-    <Footer lang={lang} />
-  </body>
+<html lang={lang} dir={dir} class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={desc} />
+  <meta name="theme-color" content="#F7F4ED" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate" hreflang="ar-SA" href={arHref} />
+  <link rel="alternate" hreflang="en" href={enHref} />
+  <link rel="alternate" hreflang="x-default" href={arHref} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={desc} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content={isAr ? 'ar_SA' : 'en_US'} />
+  <title>{fullTitle}</title>
+
+  <!-- Fonts: IT Cluster v3 — Google Fonts, non-render-blocking print-media swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Tajawal:wght@400;500;700&display=swap"
+        media="print"
+        onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Tajawal:wght@400;500;700&display=swap" />
+  </noscript>
+</head>
+
+<body class="bg-bone text-ink antialiased">
+
+  <!-- Skip link -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:start-2 focus:bg-ink focus:text-bone focus:px-3 focus:py-1 focus:rounded focus:z-50">
+    {isAr ? 'انتقل إلى المحتوى' : 'Skip to content'}
+  </a>
+
+  <!-- Masthead -->
+  <header role="banner" class="sticky top-0 z-50 bg-bone/85 backdrop-blur-sm border-b border-ink/20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex items-end justify-between gap-6 pt-5 pb-4">
+
+        <!-- Brand lockup -->
+        <a href={`${prefix}/`} class="flex items-center gap-3 group" aria-label="Thuraya — Home">
+          <svg viewBox="0 0 64 60" xmlns="http://www.w3.org/2000/svg" class="h-7 w-auto" aria-hidden="true">
+            <g fill="none" stroke="#0A1124" stroke-width="0.7" stroke-linecap="round" opacity="0.42">
+              <line x1="32" y1="4"  x2="32" y2="14"/>
+              <path d="M32 14 L20 22 L14 36 L24 50 L40 50 L50 36 L44 22 Z"/>
+              <line x1="32" y1="14" x2="32" y2="30"/>
+              <line x1="20" y1="22" x2="32" y2="30"/>
+              <line x1="44" y1="22" x2="32" y2="30"/>
+              <line x1="14" y1="36" x2="32" y2="30"/>
+              <line x1="50" y1="36" x2="32" y2="30"/>
+              <line x1="24" y1="50" x2="32" y2="30"/>
+              <line x1="40" y1="50" x2="32" y2="30"/>
+            </g>
+            <rect x="29.5" y="2" width="5" height="3" fill="#0A1124"/>
+            <g fill="#0A1124">
+              <circle cx="32" cy="30" r="3.4"/>
+              <circle cx="32" cy="14" r="1.8"/>
+              <circle cx="20" cy="22" r="2.0"/>
+              <circle cx="44" cy="22" r="2.0"/>
+              <circle cx="14" cy="36" r="2.2"/>
+              <circle cx="50" cy="36" r="1.6"/>
+              <circle cx="24" cy="50" r="1.8"/>
+              <circle cx="40" cy="50" r="2.2"/>
+            </g>
+          </svg>
+          <span class="font-display font-semibold text-[19px] tracking-tight" style="font-variation-settings:'opsz' 24,'wdth' 92;">
+            Thuraya
+          </span>
+          <span class="font-mono text-[10.5px] uppercase tracking-[0.26em] text-steel">Tech</span>
+        </a>
+
+        <!-- Primary nav — Cluster / Company / Contact -->
+        <nav class="hidden md:flex items-center gap-10" aria-label={isAr ? 'التنقل الرئيسي' : 'Main navigation'}>
+          <a href={`${prefix}/products`} class="font-mono text-[11px] uppercase tracking-[0.22em] text-steel hover:text-ink transition-colors">
+            {isAr ? 'المنتجات' : 'Cluster'}
+          </a>
+          <a href={`${prefix}/about`} class="font-mono text-[11px] uppercase tracking-[0.22em] text-steel hover:text-ink transition-colors">
+            {isAr ? 'الشركة' : 'Company'}
+          </a>
+          <a href={`${prefix}/contact`} class="font-mono text-[11px] uppercase tracking-[0.22em] text-steel hover:text-ink transition-colors">
+            {isAr ? 'تواصل معنا' : 'Contact'}
+          </a>
+        </nav>
+
+        <!-- Language toggle (umbrella site has no auth) -->
+        <a
+          href={altPath}
+          class="font-mono text-[11px] uppercase tracking-[0.22em] text-steel hover:text-ink transition-colors border border-ink/20 px-3 py-1.5 rounded-sm"
+          hreflang={altLang}
+          lang={altLang}
+          dir={altLang === 'ar' ? 'rtl' : 'ltr'}
+        >
+          {isAr ? 'English' : 'العربية'}
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo" class="border-t border-ink/20 mt-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12">
+
+      <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 lg:gap-16">
+
+        <div>
+          <a href={`${prefix}/`} class="flex items-center gap-3" aria-label="Thuraya Tech">
+            <svg viewBox="0 0 64 60" xmlns="http://www.w3.org/2000/svg" class="h-7 w-auto" aria-hidden="true">
+              <g fill="none" stroke="#0A1124" stroke-width="0.7" stroke-linecap="round" opacity="0.42">
+                <line x1="32" y1="4"  x2="32" y2="14"/>
+                <path d="M32 14 L20 22 L14 36 L24 50 L40 50 L50 36 L44 22 Z"/>
+              </g>
+              <rect x="29.5" y="2" width="5" height="3" fill="#0A1124"/>
+              <g fill="#0A1124">
+                <circle cx="32" cy="30" r="3.4"/>
+                <circle cx="32" cy="14" r="1.8"/>
+                <circle cx="20" cy="22" r="2.0"/>
+                <circle cx="44" cy="22" r="2.0"/>
+                <circle cx="14" cy="36" r="2.2"/>
+                <circle cx="50" cy="36" r="1.6"/>
+                <circle cx="24" cy="50" r="1.8"/>
+                <circle cx="40" cy="50" r="2.2"/>
+              </g>
+            </svg>
+            <span class="font-display font-semibold text-[19px] tracking-tight">Thuraya</span>
+            <span class="font-mono text-[10.5px] uppercase tracking-[0.26em] text-steel">Tech</span>
+          </a>
+          <p class="text-[14.5px] text-ink-soft mt-4 max-w-sm leading-relaxed">
+            {isAr
+              ? 'شركة هندسة تقنية سعودية — تشغّل منظومة منتجات العمليات التي يحتاجها الفريق الحديث.'
+              : 'A Saudi IT engineering company — running the cluster of operations products modern teams need.'}
+          </p>
+          <p class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-steel mt-6">
+            {isAr ? 'الرياض · ٢٠٢٦' : 'Riyadh · 2026'}
+          </p>
+        </div>
+
+        <div>
+          <p class="eyebrow"><span class="dot"></span>{isAr ? 'المنظومة' : 'The cluster'}</p>
+          <ul class="mt-4 space-y-2.5">
+            <li><a href="https://trace.thuraya.tech" class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">ThurayaTrace<span class="font-mono text-steel text-[11px] tracking-wider ml-2">SRE</span></a></li>
+            <li><a href="https://qayd.thuraya.tech"  class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">ThurayaQayd<span  class="font-mono text-steel text-[11px] tracking-wider ml-2">ITSM</span></a></li>
+            <li><a href="https://aql.thuraya.tech"   class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">ThurayaAql<span   class="font-mono text-steel text-[11px] tracking-wider ml-2">AI</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="eyebrow"><span class="dot"></span>{isAr ? 'الشركة' : 'Company'}</p>
+          <ul class="mt-4 space-y-2.5">
+            <li><a href={`${prefix}/products`} class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">{isAr ? 'المنتجات' : 'Products'}</a></li>
+            <li><a href={`${prefix}/about`}    class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">{isAr ? 'عن الشركة' : 'About'}</a></li>
+            <li><a href={`${prefix}/contact`}  class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">{isAr ? 'تواصل معنا' : 'Contact'}</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="eyebrow"><span class="dot"></span>{isAr ? 'قانوني' : 'Legal'}</p>
+          <ul class="mt-4 space-y-2.5">
+            <li><a href={`${prefix}/privacy`}    class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">{isAr ? 'الخصوصية' : 'Privacy'}</a></li>
+            <li><a href={`${prefix}/terms`}      class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">{isAr ? 'الشروط' : 'Terms'}</a></li>
+            <li><a href={`${prefix}/compliance`} class="text-[14.5px] text-ink hover:text-brass-deep transition-colors">{isAr ? 'الامتثال' : 'Compliance'}</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="rule mt-12"></div>
+
+      <div class="flex flex-col md:flex-row justify-between items-baseline gap-3 mt-6">
+        <p class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-steel">
+          &copy; {year} Thuraya Tech · {isAr ? 'جميع الحقوق محفوظة' : 'All rights reserved'}
+        </p>
+        <p class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-steel">
+          ثُرَيّا — the cluster
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
 </html>

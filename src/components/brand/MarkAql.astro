@@ -1,0 +1,49 @@
+---
+/** Aql product mark — neural network / LLM gateway diagram. */
+export interface Props { size?: number; class?: string; }
+const { size = 160, class: cls = '' } = Astro.props;
+---
+<svg viewBox="0 0 180 140" xmlns="http://www.w3.org/2000/svg"
+     width={size} height={Math.round(size * 140/180)} class={cls} aria-hidden="true">
+  <g stroke="#B8862E" fill="none" stroke-linecap="round">
+    <line x1="30"  y1="30"  x2="86"  y2="48"  stroke-width="0.7" opacity="0.55"/>
+    <line x1="30"  y1="62"  x2="86"  y2="48"  stroke-width="1.2" opacity="0.95"/>
+    <line x1="30"  y1="110" x2="86"  y2="92"  stroke-width="0.7" opacity="0.55"/>
+    <line x1="30"  y1="30"  x2="86"  y2="92"  stroke-width="0.5" opacity="0.32"/>
+    <line x1="30"  y1="62"  x2="86"  y2="92"  stroke-width="0.9" opacity="0.7"/>
+    <line x1="30"  y1="110" x2="86"  y2="48"  stroke-width="0.5" opacity="0.32"/>
+    <line x1="86"  y1="48"  x2="110" y2="70"  stroke-width="1.4" opacity="0.95"/>
+    <line x1="86"  y1="92"  x2="110" y2="70"  stroke-width="1.4" opacity="0.95"/>
+    <line x1="110" y1="70"  x2="156" y2="30"  stroke-width="0.7" opacity="0.55"/>
+    <line x1="110" y1="70"  x2="156" y2="70"  stroke-width="1.2" opacity="0.95"/>
+    <line x1="110" y1="70"  x2="156" y2="110" stroke-width="0.7" opacity="0.55"/>
+  </g>
+  <g stroke="#0A1124" stroke-width="0.4" opacity="0.18">
+    <line x1="48"  y1="14" x2="48"  y2="126"/>
+    <line x1="98"  y1="14" x2="98"  y2="126"/>
+    <line x1="132" y1="14" x2="132" y2="126"/>
+  </g>
+  <g font-family="JetBrains Mono, monospace" font-size="5.6" fill="#4C5468" letter-spacing="1">
+    <text x="22"  y="134">INPUT</text>
+    <text x="76"  y="134">HIDDEN</text>
+    <text x="138" y="134">OUTPUT</text>
+  </g>
+  <g fill="#0A1124">
+    <circle cx="30"  cy="30"  r="2.2"/>
+    <circle cx="30"  cy="62"  r="2.6"/>
+    <circle cx="30"  cy="110" r="2.0"/>
+    <circle cx="86"  cy="48"  r="2.4"/>
+    <circle cx="86"  cy="92"  r="2.2"/>
+    <circle cx="156" cy="30"  r="1.7"/>
+    <circle cx="156" cy="70"  r="2.4"/>
+    <circle cx="156" cy="110" r="1.9"/>
+  </g>
+  <circle cx="110" cy="70" r="9"   fill="none" stroke="#D4A85B" stroke-width="0.6" opacity="0.6"/>
+  <circle cx="110" cy="70" r="6.2" fill="#D4A85B"/>
+  <circle cx="110" cy="70" r="2.6" fill="#0A1124"/>
+  <g stroke="#0A1124" stroke-width="0.8" opacity="0.55" stroke-dasharray="2 4">
+    <line x1="30"  y1="62" x2="86"  y2="48"/>
+    <line x1="86"  y1="48" x2="110" y2="70"/>
+    <line x1="110" y1="70" x2="156" y2="70"/>
+  </g>
+</svg>

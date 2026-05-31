@@ -24,6 +24,9 @@ const p = t(lang).products;
           <th class="text-start font-bold p-4">
             <a href={localePath(lang, '/products/trace')} class="hover:text-gold">{p.headers.trace}</a>
           </th>
+          <th class="text-start font-bold p-4">
+            <a href={localePath(lang, '/products/aql')} class="hover:text-gold">{p.headers.aql}</a>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -32,6 +35,7 @@ const p = t(lang).products;
             <td class="p-4 font-semibold text-charcoal">{row.f}</td>
             <td class="p-4 text-charcoal/85">{row.q}</td>
             <td class="p-4 text-charcoal/85">{row.t}</td>
+            <td class="p-4 text-charcoal/85">{row.a}</td>
           </tr>
         ))}
       </tbody>
@@ -46,6 +50,7 @@ const p = t(lang).products;
     <div class="mt-8 flex flex-wrap gap-4">
       <a href={localePath(lang, '/products/qayd')} class="btn-primary">{t(lang).home.qaydTitle}</a>
       <a href={localePath(lang, '/products/trace')} class="btn-primary">{t(lang).home.traceTitle}</a>
+      <a href={localePath(lang, '/products/aql')} class="btn-primary">{t(lang).home.aqlTitle}</a>
     </div>
   </div>
 </section>

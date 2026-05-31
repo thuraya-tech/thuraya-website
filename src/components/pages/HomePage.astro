@@ -1,82 +1,240 @@
 ---
 import type { Lang } from '../../i18n';
-import { t, localePath } from '../../i18n';
-import Pleiades from '../Pleiades.astro';
-import ProductCard from '../ProductCard.astro';
-import TrustBar from '../TrustBar.astro';
+import { t } from '../../i18n';
+import MarkMaster from '../brand/MarkMaster.astro';
+import MarkTrace from '../brand/MarkTrace.astro';
+import MarkQayd from '../brand/MarkQayd.astro';
+import MarkAql from '../brand/MarkAql.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const s = t(lang);
-const h = s.home;
+const isAr = lang === 'ar';
+const prefix = isAr ? '' : '/en';
 ---
-<section class="relative overflow-hidden bg-navy text-white">
-  <div class="absolute inset-0 opacity-50 pointer-events-none">
-    <Pleiades class="absolute -top-10 end-0 w-[760px] max-w-none" />
-  </div>
-  <div class="container-page relative py-24 md:py-32">
-    <h1 class="h-display max-w-3xl">{h.heroTitle}</h1>
-    <p class="lead text-white/80 mt-6 max-w-2xl">{h.heroSubtitle}</p>
-    <div class="mt-10 flex flex-wrap gap-4">
-      <a href={localePath(lang, '/products')} class="btn-primary">{h.heroCtaPrimary}</a>
-      <a href={localePath(lang, '/contact')} class="btn-ghost border-white/30 text-white hover:bg-white/10">{h.heroCtaSecondary}</a>
-    </div>
-  </div>
-</section>
 
-<section class="container-page py-20">
-  <h2 class="h-section text-navy">{h.productsTitle}</h2>
-  <p class="lead mt-3 max-w-2xl">{h.productsLead}</p>
-  <div class="grid md:grid-cols-2 gap-6 mt-10">
-    <ProductCard
-      title={h.qaydTitle}
-      description={h.qaydDesc}
-      href={localePath(lang, '/products/qayd')}
-      cta={h.qaydLink}
-    />
-    <ProductCard
-      title={h.traceTitle}
-      description={h.traceDesc}
-      href={localePath(lang, '/products/trace')}
-      cta={h.traceLink}
-    />
-  </div>
-</section>
+<!-- ══════════════════════════════════════════════════════════
+     HERO — master mark + masterbrand pitch
+══════════════════════════════════════════════════════════ -->
+<section id="hero" aria-labelledby="hero-h" class="relative pt-20 lg:pt-24 pb-16 lg:pb-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-16 items-end">
 
-<TrustBar lang={lang} />
+      <div class="reveal reveal-d1">
+        <p class="eyebrow">
+          <span class="dot"></span>
+          {isAr ? 'شركة هندسة تقنية سعودية · ثلاثة منتجات · منظومة واحدة' : 'An IT engineering company · three products · one cluster'}
+        </p>
 
-<section class="container-page py-20">
-  <h2 class="h-section text-navy">{h.pillarsTitle}</h2>
-  <div class="grid md:grid-cols-3 gap-6 mt-10">
-    {h.pillars.map((p) => (
-      <article class="card">
-        <h3 class="text-xl font-bold text-navy">{p.title}</h3>
-        <p class="mt-2 text-charcoal/80">{p.body}</p>
-      </article>
-    ))}
-  </div>
-</section>
+        <h1 id="hero-h"
+            class="font-display text-[64px] sm:text-[88px] lg:text-[108px] leading-[0.94] tracking-tight mt-7"
+            style="font-variation-settings:'opsz' 144,'wdth' 90;">
+          {isAr
+            ? <><span class="italic-brass">المنظومة</span><br/>التي تُدير التقنية.</>
+            : <>An IT <span class="italic-brass">cluster</span>.<br/>One company.</>}
+        </h1>
 
-<section class="bg-navy text-white">
-  <div class="container-page py-16">
-    <h2 class="h-section text-center">{h.numbersTitle}</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 text-center">
-      {h.numbers.map((n) => (
-        <div>
-          <div class="text-4xl md:text-5xl font-bold text-gold">{n.value}</div>
-          <div class="mt-2 text-sm text-white/70">{n.label}</div>
+        <p class="text-[18.5px] sm:text-[19.5px] text-ink-soft mt-7 max-w-[640px] leading-[1.55]">
+          {isAr
+            ? <><span class="font-semibold text-ink">ثريا</span> شركة هندسة تقنية سعودية. نبني منظومة منتجات العمليات التي تحتاجها الفرق الحديثة: <span class="font-semibold text-ink">المراقبة</span>، <span class="font-semibold text-ink">إدارة الخدمات</span>، و<span class="font-semibold text-ink">الذكاء الاصطناعي الخاص</span>. ثلاثة منتجات، هوية واحدة.</>
+            : <><span class="font-semibold text-ink">Thuraya</span> is a Saudi IT engineering company. We build the cluster of operations products modern teams need — <span class="font-semibold text-ink">observability</span>, <span class="font-semibold text-ink">service management</span>, and <span class="font-semibold text-ink">private AI</span>. Three products, one identity.</>}
+        </p>
+
+        <div class="flex flex-wrap gap-3 mt-9">
+          <a href={`${prefix}/products`} class="btn-ink">
+            {isAr ? 'استكشف المنظومة' : 'Explore the cluster'} &rarr;
+          </a>
+          <a href={`${prefix}/contact`} class="btn-quill">
+            {isAr ? 'تواصل معنا' : 'Get in touch'}
+          </a>
         </div>
-      ))}
+      </div>
+
+      <!-- Master mark, large -->
+      <figure class="reveal reveal-d3 self-center justify-self-center lg:justify-self-end"
+              aria-label={isAr ? 'علامة ثريا — عنقود الثريا' : 'Thuraya master mark — Pleiades cluster'}>
+        <MarkMaster size={340} class="w-[280px] h-[280px] lg:w-[340px] lg:h-[340px]" />
+        <figcaption class="text-center mt-3 font-mono text-[10.5px] uppercase tracking-[0.22em] text-steel">
+          ثُرَيّا · the cluster
+        </figcaption>
+      </figure>
+
     </div>
   </div>
 </section>
 
-<section class="container-page py-20">
-  <div class="rounded-2xl bg-navy text-white p-10 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-    <div>
-      <h2 class="text-3xl font-bold">{h.ctaTitle}</h2>
-      <p class="mt-2 text-white/80">{h.ctaBody}</p>
+<!-- ══════════════════════════════════════════════════════════
+     THE CLUSTER — three product entry-points
+══════════════════════════════════════════════════════════ -->
+<section id="cluster" aria-labelledby="cluster-h" class="border-t border-ink/20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20">
+
+    <div class="flex flex-col md:flex-row justify-between items-baseline gap-4 mb-10">
+      <div>
+        <p class="eyebrow"><span class="dot"></span>{isAr ? 'أولاً · ثانياً · ثالثاً' : 'i · ii · iii'}</p>
+        <h2 id="cluster-h"
+            class="font-display text-[40px] sm:text-[52px] mt-4 tracking-tight"
+            style="font-variation-settings:'opsz' 96,'wdth' 92;">
+          {isAr
+            ? <>المنظومة — <span class="italic-brass">ثلاثة منتجات</span>.</>
+            : <>The <span class="italic-brass">cluster</span> — three products.</>}
+        </h2>
+      </div>
+      <p class="text-[15.5px] text-ink-soft max-w-[420px]">
+        {isAr
+          ? 'كل علامة تحمل هيكل سبعة عقد — الثريا — لكنها تُجسّد وظيفة المنتج فكرةً مرئية.'
+          : 'Each mark shares the same seven-node skeleton — the Pleiades — but renders the product\'s job as the visual idea.'}
+      </p>
     </div>
-    <a href={localePath(lang, '/contact')} class="btn-primary whitespace-nowrap">{h.ctaButton}</a>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 border border-ink/10 bg-ink/10 gap-[1px]">
+
+      <!-- TRACE -->
+      <article class="bg-paper p-8 sm:p-9 reveal reveal-d1 relative">
+        <span class="absolute top-6 right-7 font-mono text-[10.5px] uppercase tracking-[0.18em] text-steel">i / apm</span>
+        <div class="h-[120px] flex items-end">
+          <MarkTrace size={160} />
+        </div>
+        <h3 class="font-display text-[30px] mt-6 tracking-tight" style="font-variation-settings:'opsz' 60,'wdth' 90;">
+          Thuraya<span class="italic-brass">Trace</span>
+        </h3>
+        <p class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-steel mt-1">Observability · APM · OpenTelemetry</p>
+        <p class="text-[14.5px] text-ink mt-4 leading-relaxed">
+          {isAr
+            ? 'تتبع موزع ومقاييس RED وسجلات لفرق الهندسة. مبني على OpenTelemetry وClickHouse. جاهز للنشر الداخلي.'
+            : 'Distributed tracing, RED metrics, and logs for production engineering teams. OpenTelemetry-native, ClickHouse-backed, on-prem ready.'}
+        </p>
+        <a href="https://trace.thuraya.tech" class="mt-6 inline-flex items-center gap-2 font-mono text-[11.5px] text-brass tracking-wide pt-3 border-t border-ink/10 w-full">
+          trace.thuraya.tech <span class="ml-auto text-ink">&rarr;</span>
+        </a>
+      </article>
+
+      <!-- QAYD -->
+      <article class="bg-paper p-8 sm:p-9 reveal reveal-d2 relative">
+        <span class="absolute top-6 right-7 font-mono text-[10.5px] uppercase tracking-[0.18em] text-steel">ii / itsm</span>
+        <div class="h-[120px] flex items-center">
+          <MarkQayd size={160} />
+        </div>
+        <h3 class="font-display text-[30px] mt-6 tracking-tight" style="font-variation-settings:'opsz' 60,'wdth' 90;">
+          Thuraya<span class="italic-brass">Qayd</span>
+        </h3>
+        <p class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-steel mt-1">ITSM · CMDB · قَيْد · register</p>
+        <p class="text-[14.5px] text-ink mt-4 leading-relaxed">
+          {isAr
+            ? 'السجل الذي يربط كل نقطة نهاية وتذكرة واتفاقية مستوى خدمة في سجل واحد. عربي أولاً، متوافق مع ITIL.'
+            : 'The asset and service registry that binds every endpoint, ticket, and SLA in one record. Arabic-first, ITIL-aligned, on-prem ready.'}
+        </p>
+        <a href="https://qayd.thuraya.tech" class="mt-6 inline-flex items-center gap-2 font-mono text-[11.5px] text-brass tracking-wide pt-3 border-t border-ink/10 w-full">
+          qayd.thuraya.tech <span class="ml-auto text-ink">&rarr;</span>
+        </a>
+      </article>
+
+      <!-- AQL -->
+      <article class="bg-paper p-8 sm:p-9 reveal reveal-d3 relative">
+        <span class="absolute top-6 right-7 font-mono text-[10.5px] uppercase tracking-[0.18em] text-steel">iii / ai</span>
+        <div class="h-[120px] flex items-center">
+          <MarkAql size={160} />
+        </div>
+        <h3 class="font-display text-[30px] mt-6 tracking-tight" style="font-variation-settings:'opsz' 60,'wdth' 90;">
+          Thuraya<span class="italic-brass">Aql</span>
+        </h3>
+        <p class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-steel mt-1">Private AI · LLM gateway · عَقْل · reason</p>
+        <p class="text-[14.5px] text-ink mt-4 leading-relaxed">
+          {isAr
+            ? 'ذكاء اصطناعي خاص على البنية التحتية الداخلية: بوابة نموذج لغوي محلية لمؤسسات لا تستطيع إرسال البيانات خارج الشبكة.'
+            : 'On-prem private AI: a self-hosted LLM gateway and intelligence layer for Saudi enterprises that can\'t ship prompts off-network.'}
+        </p>
+        <a href="https://aql.thuraya.tech" class="mt-6 inline-flex items-center gap-2 font-mono text-[11.5px] text-brass tracking-wide pt-3 border-t border-ink/10 w-full">
+          aql.thuraya.tech <span class="ml-auto text-ink">&rarr;</span>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SYSTEM MAP — dark engineering panel (section-ink)
+══════════════════════════════════════════════════════════ -->
+<section id="system-map" aria-labelledby="map-h" class="section-ink">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20">
+
+    <div class="flex flex-col md:flex-row justify-between items-baseline gap-4 pb-6 border-b border-bone/15">
+      <h2 id="map-h"
+          class="font-display text-[34px] sm:text-[40px] tracking-tight text-bone"
+          style="font-variation-settings:'opsz' 72,'wdth' 92;">
+        {isAr
+          ? <>علامة مرجعية واحدة. <span style="color:var(--brass-hot);font-style:italic;font-variation-settings:'opsz' 72,'wdth' 88;">منظومة منتجات واحدة.</span></>
+          : <>One masterbrand. <span style="color:var(--brass-hot);font-style:italic;font-variation-settings:'opsz' 72,'wdth' 88;">One cluster of products.</span></>}
+      </h2>
+      <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-bone/60">
+        {isAr ? 'خريطة النظام · العلامة المرجعية ← المنتجات' : 'System map · masterbrand → products'}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-9">
+
+      <div class="p-6 border" style="border-color:rgba(212,168,91,0.4);background:rgba(212,168,91,0.05);">
+        <span class="font-mono text-[10.5px] uppercase tracking-[0.22em]" style="color:var(--brass-hot)">Masterbrand</span>
+        <h3 class="font-display text-[24px] mt-3" style="font-variation-settings:'opsz' 48,'wdth' 92;color:var(--brass-hot);">Thuraya</h3>
+        <p class="font-sans text-[13.5px] text-bone/78 mt-2 leading-relaxed">
+          {isAr
+            ? 'شركة الهندسة التقنية السعودية. تشغّل المنظومة: مراقبة، إدارة خدمات، ذكاء اصطناعي خاص.'
+            : 'The Saudi IT engineering company. Operates the cluster: observability, service management, and private AI — one identity.'}
+        </p>
+      </div>
+
+      <div class="p-6 border border-bone/18 bg-bone/[0.03]">
+        <span class="font-mono text-[10.5px] uppercase tracking-[0.22em]" style="color:var(--brass-hot)">Product · SRE</span>
+        <h3 class="font-display text-[24px] text-bone mt-3" style="font-variation-settings:'opsz' 48,'wdth' 92;">Trace</h3>
+        <p class="font-sans text-[13.5px] text-bone/78 mt-2 leading-relaxed">
+          Distributed tracing, RED metrics, ClickHouse APM. SaaS at trace.thuraya.tech or fully on-prem.
+        </p>
+      </div>
+
+      <div class="p-6 border border-bone/18 bg-bone/[0.03]">
+        <span class="font-mono text-[10.5px] uppercase tracking-[0.22em]" style="color:var(--brass-hot)">Product · ITSM</span>
+        <h3 class="font-display text-[24px] text-bone mt-3" style="font-variation-settings:'opsz' 48,'wdth' 92;">Qayd</h3>
+        <p class="font-sans text-[13.5px] text-bone/78 mt-2 leading-relaxed">
+          Arabic-first ITSM with CMDB. Tickets, assets, contracts, SLAs — all in one register.
+        </p>
+      </div>
+
+      <div class="p-6 border border-bone/18 bg-bone/[0.03]">
+        <span class="font-mono text-[10.5px] uppercase tracking-[0.22em]" style="color:var(--brass-hot)">Product · AI</span>
+        <h3 class="font-display text-[24px] text-bone mt-3" style="font-variation-settings:'opsz' 48,'wdth' 92;">Aql</h3>
+        <p class="font-sans text-[13.5px] text-bone/78 mt-2 leading-relaxed">
+          Private LLM gateway for Saudi enterprises. Self-hosted, sovereignty-first, on-prem or SaaS.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CTA
+══════════════════════════════════════════════════════════ -->
+<section id="cta" class="border-t border-ink/10">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10 py-20 text-center">
+    <p class="eyebrow"><span class="dot"></span>{isAr ? 'انضم إلى المنظومة' : 'Join the cluster'}</p>
+    <h2 class="font-display text-[44px] sm:text-[60px] mt-5 tracking-tight"
+        style="font-variation-settings:'opsz' 96,'wdth' 90;">
+      {isAr
+        ? <>أضف عقدة إلى <span class="italic-brass">المنظومة</span>.</>
+        : <>Plug a node into the <span class="italic-brass">cluster</span>.</>}
+    </h2>
+    <p class="text-[17.5px] text-ink-soft mt-5 max-w-[640px] mx-auto leading-[1.55]">
+      {isAr
+        ? 'افتح حساب ثريا مرة واحدة — استخدم أي منتج في المنظومة. هوية واحدة، فوترة واحدة.'
+        : 'One Thuraya account — any product in the cluster. Single identity, single billing, one deployment story whether you\'re SaaS or on-prem.'}
+    </p>
+    <div class="flex justify-center gap-3 mt-9 flex-wrap">
+      <a href={`${prefix}/contact`} class="btn-ink">
+        {isAr ? 'تواصل معنا' : 'Get in touch'}
+      </a>
+      <a href={`${prefix}/products`} class="btn-quill">
+        {isAr ? 'استكشف المنتجات' : 'See all products'}
+      </a>
+    </div>
   </div>
 </section>

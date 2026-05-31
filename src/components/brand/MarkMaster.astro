@@ -1,0 +1,42 @@
+---
+/**
+ * Thuraya master mark — hub + armature + 7 Pleiades nodes.
+ * Pixel-identical to trace-api/resources/views/layouts/web.blade.php (large hero variant).
+ */
+export interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 340, class: cls = '' } = Astro.props;
+---
+<svg
+  viewBox="0 0 220 220"
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  class={cls}
+  aria-hidden="true"
+>
+  <g fill="none" stroke="#0A1124" stroke-width="1" stroke-linecap="round" opacity="0.42">
+    <line x1="110" y1="22" x2="110" y2="64"/>
+    <path d="M110 64 L66 96 L40 144 L74 184 L134 184 L168 144 L142 96 Z"/>
+    <line x1="110" y1="64"  x2="110" y2="118"/>
+    <line x1="66"  y1="96"  x2="110" y2="118"/>
+    <line x1="142" y1="96"  x2="110" y2="118"/>
+    <line x1="40"  y1="144" x2="110" y2="118"/>
+    <line x1="168" y1="144" x2="110" y2="118"/>
+    <line x1="74"  y1="184" x2="110" y2="118"/>
+    <line x1="134" y1="184" x2="110" y2="118"/>
+  </g>
+  <rect x="104" y="12" width="12" height="7" fill="#0A1124"/>
+  <g fill="#0A1124">
+    <circle class="twinkle" cx="110" cy="118" r="9.5"/>
+    <circle class="twinkle" cx="110" cy="64"  r="4.6" style="animation-delay:.8s"/>
+    <circle class="twinkle" cx="66"  cy="96"  r="6.2" style="animation-delay:1.6s"/>
+    <circle class="twinkle" cx="142" cy="96"  r="5.6" style="animation-delay:2.4s"/>
+    <circle class="twinkle" cx="40"  cy="144" r="6.5" style="animation-delay:3.2s"/>
+    <circle class="twinkle" cx="168" cy="144" r="4.8" style="animation-delay:4s"/>
+    <circle class="twinkle" cx="74"  cy="184" r="5.5" style="animation-delay:4.6s"/>
+    <circle class="twinkle" cx="134" cy="184" r="6.2" style="animation-delay:5.2s"/>
+  </g>
+</svg>
